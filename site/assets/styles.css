@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     height: auto;
-    width: 500px;
+    width: 400px;
     top: 46%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -61,18 +61,16 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.1s ease-in-out;
     margin: 20px auto;
 }
-.panel button:hover, .panel button:active {
-    transform: scale(1.02);
+.panel button:active {
+    transform: scale(1.1);
     cursor: pointer;
 }
 
 .field-container {
-    width: 70%;
+    width: 90%;
     margin: 20px auto;
-    /* border: 1px solid greenyellow; */
 }
 .field-container span {
-    /* border: 1px solid hotpink; */
     float: left;
     margin: 0;
     padding-top: 4px;
@@ -96,7 +94,7 @@ span.field-button {
     font-size: 36px;
     font-weight: bold;
 }
-span.field-button:hover, span.field-button:active{
-    transform: scale(1.04);
+span.field-button:active{
+    transform: scale(1.1);
     cursor: pointer;
 }

@@ -14,21 +14,30 @@ $(document).ready(function() {
         showHUD(200);
     })
 
+    // Adjust planner fields
     $("#button_increase-distance").click(function() {
-        distance++;
-        $("#distance").text(distance + "km");
+        if (distance < 100) {
+            distance++;
+            $("#distance").text(distance + "km");
+        }
     })
     $("#button_decrease-distance").click(function() {
-        distance--;
-        $("#distance").text(distance + "km");
+        if (distance > 1) {
+            distance--;
+            $("#distance").text(distance + "km");
+        }
     })
     $("#button_increase-milestones").click(function() {
-        milestones++;
-        $("#milestones").text(milestones + " Milestones");
+        if (milestones < 20) {
+            milestones++;
+            $("#milestones").text(milestones + " Milestones");
+        }
     })
     $("#button_decrease-milestones").click(function() {
-        milestones--;
-        $("#milestones").text(milestones + " Milestones");
+        if (milestones > 1) {
+            milestones--;
+            $("#milestones").text(milestones + " Milestones");
+        }
     })
 
 
