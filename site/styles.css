@@ -1,0 +1,20 @@
+/*
+-------------------------------------
+Mobile HCI 2023 Coursework Stylesheet
+-------------------------------------
+
+Fonts used:
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Staatliches', cursive;
+*/
+
+html, body {
+    font-family: 'Noto Sans', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Staatliches', cursive;
+}
+
+#hud {
+    display: none;
+}

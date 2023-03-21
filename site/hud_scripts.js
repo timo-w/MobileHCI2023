@@ -1,7 +1,6 @@
-$(document).ready(function() {
-    //$("#hud").hide();
-});
-
+// --------------------------------------
+// Mobile HCI 2023 Coursework HUD Scripts
+// --------------------------------------
 
 // Generate a random integer between a specified range
 function generateRandom(min, max) {
@@ -36,8 +35,9 @@ function setProgressBar(percentage) {
 }
 
 
+// Simulate HUD values
 function varyValues() {
-    // Change speed randomly
+    // Vary speed
     setInterval(function(){
         document.querySelector("#value_speed").setAttribute("value", generateRandom(12, 18));
     }, 500);
@@ -57,7 +57,7 @@ function varyValues() {
         }
         document.querySelector("#value_heartrate").setAttribute("value", bpm);
     }, 270);
-    // Increase distance randomly
+    // Increase distance
     let distance = 0;
     setInterval(function(){
         distance = distance + generateRandom(0, 2);
