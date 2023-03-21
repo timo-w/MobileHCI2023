@@ -2,6 +2,10 @@
 // Mobile HCI 2023 Coursework HUD Scripts
 // --------------------------------------
 
+
+// Total ride distance in metres
+let ride_distance = 5000;
+
 // Generate a random integer between a specified range
 function generateRandom(min, max) {
     let difference = max - min;
@@ -10,9 +14,6 @@ function generateRandom(min, max) {
     rand = rand + min;
     return rand;
 }
-
-// Total ride distance in metres
-let ride_distance = 5000;
 
 // Calculate distance covered as a percentage
 function calculateRidePercentage(distance_travelled, total_distance) {
