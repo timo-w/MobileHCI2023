@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+  </head>
+  <body>
+    
+    <!-- HUD -->
+    <a-scene id="hud" background="color: #0af72e">
+      <a-assets>
+        <a-mixin id="number-item" geometry="width: 2; height: 0.8;" material="opacity: 0" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 5;"></a-mixin>
+        <a-mixin id="unit-item" geometry="width: 2; height: 0.5;" material="opacity: 0" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 10;"></a-mixin>
+      </a-assets>
+      
+      <!-- Create menu items -->
+      <a-plane mixin="number-item" position="-4  -2.5 -8" rotation="-20 10 0">
+        <a-text position="0.7 0.2 0" id="value_speed" value="0" scale="4 4 4" align="right"></a-text>
+      </a-plane>
+      <a-plane class="unit" mixin="unit-item" position="-2.6  -2.5 -8.3" rotation="-20 10 0" text="value: mph"></a-plane>
+      
+      <a-plane mixin="number-item" position="4  -2.5 -8" rotation="-20 -10 0">
+        <a-text position="-0.7 0.2 0" id="value_heartrate" value="0" scale="4 4 4" align="left"></a-text>
+      </a-plane>
+      <a-plane class="unit" mixin="unit-item" position="2.6  -2.5 -8.3" rotation="-20 -10 0" text="value: bpm"></a-plane>
+      
+      <a-plane mixin="number-item" position="-4 -3.25 -7.7" rotation="-20 10 0">
+        <a-text position="0.7 0.2 0" id="value_distance" value="0" scale="4 4 4" align="right"></a-text>
+      </a-plane>
+      <a-plane class="unit" mixin="unit-item" position="-2.6 -3.25 -8" rotation="-20 10 0" text="value: km"></a-plane>
+      
+      <a-plane mixin="number-item" position="4 -3.25 -7.7" rotation="-20 -10 0">
+        <a-text position="-0.7 0.2 0" id="value_calories" value="0" scale="4 4 4" align="left"></a-text>
+      </a-plane>
+      <a-plane class="unit" mixin="unit-item" position="2.6 -3.25 -8" rotation="-20 -10 0" text="value: kcal"></a-plane>
+      
+      
+      <a-plane material="color: blue" position="0 -4.5 -7.5" rotation="-30 0 0" geometry="width: 6; height: 0.4">
+        <a-plane id="progress-bar" material="color: red" position="0 0 0.01" geometry="width: 0; height: 0.4"></a-plane>
+      </a-plane>
+      
+    </a-scene>
+    
+    <script>
+      varyValues();
+    </script>
+    
+  </body>
+</html>
