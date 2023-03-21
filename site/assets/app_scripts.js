@@ -2,11 +2,11 @@
 // Mobile HCI 2023 Coursework Application Scripts
 // ----------------------------------------------
 
-$(document).ready(function() {
+// Initial journey values
+let distance = 5;
+let milestones = 4;
 
-    // Initial journey values
-    let distance = 5;
-    let milestones = 4;
+$(document).ready(function() {
 
     // On "Start Journey" click
     $("#button_start").click(function() {
@@ -31,8 +31,8 @@ $(document).ready(function() {
         $("#milestones").text(milestones + " Milestones");
     })
 
-});
 
+});
 
 // Display HUD and start simulating values
 function showHUD(delay) {

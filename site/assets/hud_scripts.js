@@ -3,9 +3,6 @@
 // --------------------------------------
 
 
-// Total ride distance in metres
-let ride_distance = 5000;
-
 // Generate a random integer between a specified range
 function generateRandom(min, max) {
     let difference = max - min;
@@ -35,7 +32,6 @@ function setProgressBar(percentage) {
     // Else, ride finished
 }
 
-
 // Simulate HUD values
 function varyValues() {
     // Vary speed
@@ -59,13 +55,13 @@ function varyValues() {
         document.querySelector("#value_heartrate").setAttribute("value", bpm);
     }, 270);
     // Increase distance
-    let distance = 0;
+    let travelled_distance = 0;
     setInterval(function(){
-        distance = distance + generateRandom(0, 2);
-        document.querySelector("#value_distance").setAttribute("value", distance/10);
+        travelled_distance += generateRandom(0, 2);
+        document.querySelector("#value_distance").setAttribute("value", travelled_distance/10);
         // Set progress bar
-        distance_in_metres = distance * 100;
-        setProgressBar(calculateRidePercentage(distance_in_metres, ride_distance));
+        distance_in_metres = travelled_distance * 100;
+        setProgressBar(calculateRidePercentage(distance_in_metres, distance*1000));
     }, 7000)
     // Increment calorie counter
     let kcal = 0;
