@@ -19,7 +19,7 @@ function calculateRidePercentage(distance_travelled, total_distance) {
 
 // Fill progress bar to specified percentage
 function setProgressBar(percentage) {
-    if (percentage <= 100) {
+    if (percentage < 100) {
         // Calculate width to set progress bar
         let width_to_fill = (percentage / 100) * 6;
         let width_attribute = "width: " + width_to_fill + "; height: 0.4";
@@ -28,8 +28,13 @@ function setProgressBar(percentage) {
         let translate_x = -( 3 - (width_to_fill / 2) );
         let position_attribute = translate_x + " 0 0.01"
         document.querySelector("#progress-bar").setAttribute("position", position_attribute);
+        // Set progress bar text
+        document.querySelector("#progress-bar-text").setAttribute("value", percentage + "%");
     }
-    // Else, ride finished
+    else {
+        // Set progress bar to finished text
+        document.querySelector("#progress-bar-text").setAttribute("value", "Ride Finished! Press BACK to show stats.");
+    }
 }
 
 // Simulate HUD values
@@ -37,7 +42,7 @@ function varyValues() {
     // Vary speed
     setInterval(function(){
         document.querySelector("#value_speed").setAttribute("value", generateRandom(12, 18));
-    }, 500);
+    }, 2000);
     // Vary heartrate
     let bpm = 115;
     setInterval(function(){
@@ -62,7 +67,7 @@ function varyValues() {
         // Set progress bar
         distance_in_metres = travelled_distance * 100;
         setProgressBar(calculateRidePercentage(distance_in_metres, distance*1000));
-    }, 7000)
+    }, 700 /*7000*/)
     // Increment calorie counter
     let kcal = 0;
     setInterval(function(){
@@ -70,3 +75,21 @@ function varyValues() {
         document.querySelector("#value_calories").setAttribute("value", kcal);
     }, 3000); 
 }
+
+
+$(document).keydown(function(e) {
+    switch(e.which) {
+        // Left
+        case 37:
+            break;
+        // Up
+        case 38:
+            break;
+        case 39:
+        // Right
+            break;
+        // Down
+        case 40:
+            break;
+    };
+});
