@@ -45,17 +45,17 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 6px gray;
 }
 .panel h1 {
-    font-size: 60px;
+    font-size: 56px;
     margin-bottom: 0;
 }
 .panel button {
     background-color: white;
     color: rgb(16, 76, 126);
-    padding: 5px;
+    padding: 5px 20px;
     border: none;
     border-radius: 10px;
     height: 60px;
-    width: 50%;
+    width: auto;
     font-family: 'Staatliches', cursive;
     font-size: 30px;
     transition: all 0.1s ease-in-out;
@@ -97,4 +97,34 @@ span.field-button {
 span.field-button:active{
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.panel#journey-stats {
+    display: none;
+}
+.panel#journey-stats .field-button {
+    margin-top: 40px;
+}
+.panel#journey-stats .field-label {
+    font-size: 20px;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    margin: 0 auto 20px auto;
+}
+.circle-container span {
+    height: 12px;
+    width: 14px;
+    margin: 0 10%;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.current-stats {
+    background-color: white;
+}
+#stats_page-2, #stats_page-3 {
+    display: none;
 }

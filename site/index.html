@@ -43,6 +43,30 @@
     </section>
 
 
+    <!-- Finished panel -->
+    <section id="journey-stats" class="panel">
+
+      <h1>Journey Complete!</h1>
+
+      <div class="field-container">
+        <span id="button_previous-stats" class="field-button">&lt;</span>
+        <span id="stats_page-1" class="field-label">Distance Travelled:<br><a id="stats_distance">5.7km</a><hr>Ride Duration:<br><a id="stats_duration">16:34</a></span>
+        <span id="stats_page-2" class="field-label">Average Speed:<br><a id="stats_avg-speed">24kph / 15mph</a><hr>Max Speed:<br><a id="stats_max-speed">29kmh / 18mph</a></span>
+        <span id="stats_page-3" class="field-label">Calories Burned:<br><a id="stats_calories">256kcal</a><hr>Average Heartrate:<br><a id="stats_heartrate">120bpm</a></span>
+        <span id="button_next-stats" class="field-button">&gt;</span>
+      </div>
+
+      <div class="circle-container">
+        <span id="stats_page-1_circle" class="current-stats"></span>
+        <span id="stats_page-2_circle"></span>
+        <span id="stats_page-3_circle"></span>
+      </div>
+
+      <button id="button_restart">Begin another Journey</button>
+
+    </section>
+
+
     <!-- HUD -->
     <a-scene id="hud" background="color: #0af72e">
       <a-assets>

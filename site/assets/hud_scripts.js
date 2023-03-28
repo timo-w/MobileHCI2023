@@ -19,7 +19,7 @@ function calculateRidePercentage(distance_travelled, total_distance) {
 
 // Fill progress bar to specified percentage
 function setProgressBar(percentage) {
-    if (percentage < 100) {
+    if (percentage <= 100) {
         // Calculate width to set progress bar
         let width_to_fill = (percentage / 100) * 6;
         let width_attribute = "width: " + width_to_fill + "; height: 0.4";
@@ -38,13 +38,19 @@ function setProgressBar(percentage) {
 }
 
 // Simulate HUD values
+let bpm = 115;
+let travelled_distance = 0;
+let kcal = 0;
+let ride_duration_in_seconds = 0;
+let minutes_elapsed = 0;
+let seconds_elapsed = 0;
+let ride_duration = "0:00";
 function varyValues() {
     // Vary speed
     setInterval(function(){
         document.querySelector("#value_speed").setAttribute("value", generateRandom(12, 18));
     }, 2000);
     // Vary heartrate
-    let bpm = 115;
     setInterval(function(){
         plus_or_minus = generateRandom(0, 2);
         if (plus_or_minus == 0) {
@@ -60,7 +66,6 @@ function varyValues() {
         document.querySelector("#value_heartrate").setAttribute("value", bpm);
     }, 270);
     // Increase distance
-    let travelled_distance = 0;
     setInterval(function(){
         travelled_distance += generateRandom(0, 2);
         document.querySelector("#value_distance").setAttribute("value", travelled_distance/10);
@@ -69,14 +74,34 @@ function varyValues() {
         setProgressBar(calculateRidePercentage(distance_in_metres, distance*1000));
     }, 700 /*7000*/)
     // Increment calorie counter
-    let kcal = 0;
     setInterval(function(){
         kcal++;
         document.querySelector("#value_calories").setAttribute("value", kcal);
-    }, 3000); 
+    }, 3000);
+    // Track ride duration
+    setInterval(function(){
+        ride_duration_in_seconds++;
+        minutes_elapsed = Math.floor(ride_duration_in_seconds / 60);
+        seconds_elapsed = ride_duration_in_seconds - (minutes_elapsed*60);
+        ride_duration = minutes_elapsed + ":" + seconds_elapsed.toString().padStart(2, "0");
+    }, 1000);
 }
 
+// Send stats to stats page
+function setRideStats() {
 
+    // Distance travelled
+    let distance_stat = travelled_distance/10 + "km / " + Math.floor((travelled_distance)*0.621371)/10 + "mi";
+    $("#stats_distance").text(distance_stat);
+
+    // Ride duration
+    $("#stats_duration").text(ride_duration);
+
+    // Calories
+    $("#stats_calories").text(kcal + "kcal");
+}
+
+// Keypress events (for simulating handlebar button presses)
 $(document).keydown(function(e) {
     switch(e.which) {
         // Left
@@ -90,6 +115,8 @@ $(document).keydown(function(e) {
             break;
         // Down
         case 40:
+            setRideStats();
+            hideHUD(200);
             break;
     };
 });
