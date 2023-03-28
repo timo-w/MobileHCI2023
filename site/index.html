@@ -71,36 +71,36 @@
     <a-scene id="hud" background="color: #0af72e">
 
       <a-camera wasd-controls-enabled="false"></a-camera>
-      
+
       <a-assets>
-        <a-mixin id="number-item" geometry="width: 2.2; height: 1;" material="opacity: 0.5; color: #104c7e;" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 5;"></a-mixin>
+        <a-mixin id="number-item" geometry="width: 2.3; height: 1;" material="opacity: 0.5; color: #104c7e;" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 5;"></a-mixin>
         <a-mixin id="unit-item" geometry="width: 1.5; height: 0.5;" material="opacity: 0.5; color: #104c7e;" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 10;"></a-mixin>
         <a-mixin id="unit-text" scale="2 2 2"></a-mixin>
       </a-assets>
       
       <!-- HUD Elements 1 -->
-      <a-plane class="hud1" mixin="number-item" position="-4 -2.2 -8" rotation="-20 10 0">
+      <a-plane class="hud1" mixin="number-item" position="-4.2 -2.2 -8" rotation="-20 10 0">
         <a-text position="0.7 0 0" id="value_speed-km" value="0" scale="4 4 4" align="right"></a-text>
       </a-plane>
       <a-plane class="hud1" mixin="unit-item" position="-2.6 -2.2 -8.3" rotation="-20 10 0">
         <a-text mixin="unit-text" value="km/h" position="-0.4 0 0"></a-text>
       </a-plane>
       
-      <a-plane class="hud1" mixin="number-item" position="4  -2.2 -8" rotation="-20 -10 0">
+      <a-plane class="hud1" mixin="number-item" position="4.2  -2.2 -8" rotation="-20 -10 0">
         <a-text position="-0.7 0 0" id="value_heartrate" value="0" scale="4 4 4" align="left"></a-text>
       </a-plane>
       <a-plane class="hud1" mixin="unit-item" position="2.6 -2.2 -8.3" rotation="-20 -10 0">
         <a-text mixin="unit-text" value="bpm" position="0.4 0 0" align="right"></a-text>
       </a-plane>
       
-      <a-plane class="hud1" mixin="number-item" position="-4 -3.25 -7.7" rotation="-20 10 0">
+      <a-plane class="hud1" mixin="number-item" position="-4.2 -3.25 -7.7" rotation="-20 10 0">
         <a-text position="0.7 0 0" id="value_distance-km" value="0" scale="4 4 4" align="right"></a-text>
       </a-plane>
       <a-plane class="hud1" mixin="unit-item" position="-2.6 -3.25 -8" rotation="-20 10 0">
         <a-text mixin="unit-text" value="km" position="-0.4 0 0"></a-text>
       </a-plane>
       
-      <a-plane class="hud1" mixin="number-item" position="4 -3.25 -7.7" rotation="-20 -10 0">
+      <a-plane class="hud1" mixin="number-item" position="4.2 -3.25 -7.7" rotation="-20 -10 0">
         <a-text position="-0.7 0 0" id="value_calories" value="0" scale="4 4 4" align="left"></a-text>
       </a-plane>
       <a-plane class="hud1" mixin="unit-item" position="2.6 -3.25 -8" rotation="-20 -10 0">
@@ -108,28 +108,28 @@
       </a-plane>
 
       <!-- HUD Elements 2 -->
-      <a-plane class="hud2" mixin="number-item" position="-4 -2.2 -8" rotation="-20 10 0">
+      <a-plane class="hud2" mixin="number-item" position="-4.2 -2.2 -8" rotation="-20 10 0">
         <a-text position="0.7 0 0" id="value_speed-mi" value="0" scale="4 4 4" align="right"></a-text>
       </a-plane>
       <a-plane class="hud2" mixin="unit-item" position="-2.6 -2.2 -8.3" rotation="-20 10 0">
         <a-text mixin="unit-text" value="mph" position="-0.4 0 0"></a-text>
       </a-plane>
       
-      <a-plane class="hud2" mixin="number-item" position="4  -2.2 -8" rotation="-20 -10 0">
-        <a-text position="-0.7 0 0" id="value_heartrate" value="0" scale="4 4 4" align="left"></a-text>
+      <a-plane class="hud2" mixin="number-item" position="4.2 -2.2 -8" rotation="-20 -10 0">
+        <a-text position="-0.7 0 0" id="value_gradient" value="0" scale="4 4 4" align="left"></a-text>
       </a-plane>
       <a-plane class="hud2" mixin="unit-item" position="2.6 -2.2 -8.3" rotation="-20 -10 0">
-        <a-text mixin="unit-text" value="m/s" position="0.4 0 0" align="right"></a-text>
+        <a-text mixin="unit-text" value="slope" position="0.4 0 0" align="right"></a-text>
       </a-plane>
       
-      <a-plane class="hud2" mixin="number-item" position="-4 -3.25 -7.7" rotation="-20 10 0">
+      <a-plane class="hud2" mixin="number-item" position="-4.2 -3.25 -7.7" rotation="-20 10 0">
         <a-text position="0.7 0 0" id="value_distance-mi" value="0" scale="4 4 4" align="right"></a-text>
       </a-plane>
       <a-plane class="hud2" mixin="unit-item" position="-2.6 -3.25 -8" rotation="-20 10 0">
         <a-text mixin="unit-text" value="mi" position="-0.4 0 0"></a-text>
       </a-plane>
       
-      <a-plane class="hud2" mixin="number-item" position="4 -3.25 -7.7" rotation="-20 -10 0">
+      <a-plane class="hud2" mixin="number-item" position="4.2 -3.25 -7.7" rotation="-20 -10 0">
         <a-text position="-0.7 0 0" id="value_duration" value="0" scale="4 4 4" align="left"></a-text>
       </a-plane>
       <a-plane class="hud2" mixin="unit-item" position="2.6 -3.25 -8" rotation="-20 -10 0">

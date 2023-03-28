@@ -49,6 +49,7 @@ let minutes_elapsed = 0;
 let seconds_elapsed = 0;
 let ride_duration = "0:00";
 let velocity = 0;
+let gradient = 0;
 
 function varyValues() {
     // Vary speed
@@ -56,7 +57,7 @@ function varyValues() {
         velocity = generateRandom(20, 30);
         document.querySelector("#value_speed-km").setAttribute("value", velocity);
         document.querySelector("#value_speed-mi").setAttribute("value", Math.floor(velocity*0.621371));
-    }, 2000);
+    }, 2500);
     // Vary heartrate
     setInterval(function(){
         plus_or_minus = generateRandom(0, 2);
@@ -71,7 +72,7 @@ function varyValues() {
             bpm -= 4;
         }
         document.querySelector("#value_heartrate").setAttribute("value", bpm);
-    }, 270);
+    }, 770);
     // Increase distance
     setInterval(function(){
         travelled_distance += generateRandom(0, 2);
@@ -94,6 +95,21 @@ function varyValues() {
         ride_duration = minutes_elapsed + ":" + seconds_elapsed.toString().padStart(2, "0");
         document.querySelector("#value_duration").setAttribute("value", ride_duration);
     }, 1000);
+    // Vary gradient
+    setInterval(function(){
+        plus_or_minus = generateRandom(0, 2);
+        if (plus_or_minus == 0) {
+            gradient += generateRandom(0, 2);
+        } else {
+            gradient -= generateRandom(0, 2);
+        }
+        if (gradient < -6) {
+            gradient += 2;
+        } else if (gradient > 6) {
+            gradient -= 2;
+        }
+        document.querySelector("#value_gradient").setAttribute("value", gradient + "%");
+    }, 1400);
 }
 
 // Send stats to stats page
@@ -106,7 +122,6 @@ function setRideStats() {
     // Calories
     $("#stats_calories").text(kcal + "kcal");
 }
-
 
 // Functions to switch between HUD elements
 function showHud1() {
