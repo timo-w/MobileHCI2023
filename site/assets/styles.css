@@ -49,6 +49,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 56px;
     margin-bottom: 0;
 }
+.panel p {
+    margin-bottom: -12px;
+    font-size: 20px;
+}
 .panel button {
     background-color: white;
     color: rgb(16, 76, 126);

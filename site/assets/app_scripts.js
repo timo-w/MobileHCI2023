@@ -5,6 +5,7 @@
 // Initial journey values
 let distance = 5;
 let milestones = 4;
+let pace = 10;
 
 $(document).ready(function() {
 
@@ -37,6 +38,18 @@ $(document).ready(function() {
         if (milestones > 1) {
             milestones--;
             $("#milestones").text(milestones + " Milestones");
+        }
+    });
+    $("#button_increase-pace").click(function() {
+        if (pace < 120) {
+            pace += 5;
+            $("#pace").text(pace + " Minutes");
+        }
+    });
+    $("#button_decrease-pace").click(function() {
+        if (pace > 5) {
+            pace -= 5;
+            $("#pace").text(pace + " Minutes");
         }
     });
 

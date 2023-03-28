@@ -33,6 +33,7 @@ function setProgressBar(percentage) {
         document.querySelector("#progress-bar").setAttribute("position", position_attribute);
         // Set progress bar text
         if (percentage >= 25) {
+            document.querySelector("#pace-line-label").setAttribute("value", "");
             document.querySelector("#milestone-1").setAttribute("src", "#complete");
             document.querySelector("#progress-bar-text").setAttribute("value", "First milestone reached! Keep going!");
         }
@@ -46,23 +47,25 @@ function setProgressBar(percentage) {
         }
     }
     else {
-        // Set progress bar to finished text
+        // Set progress bar to finished text, remove pace line
         document.querySelector("#milestone-4").setAttribute("src", "#complete");
         document.querySelector("#progress-bar-text").setAttribute("value", "Ride Finished! Press BACK to show stats.");
+        document.querySelector("#pace-line").setAttribute("visible", false);
     }
 }
 
-// Simulate HUD values
 let bpm = 115;
 let travelled_distance = 0;
 let kcal = 0;
 let ride_duration_in_seconds = 0;
+let pace_in_seconds = pace * 60;
 let minutes_elapsed = 0;
 let seconds_elapsed = 0;
 let ride_duration = "0:00";
 let velocity = 0;
 let gradient = 0;
 
+// Simulate HUD values
 function varyValues() {
     // Vary speed
     setInterval(function(){
@@ -93,7 +96,7 @@ function varyValues() {
         // Set progress bar
         distance_in_metres = travelled_distance * 100;
         setProgressBar(calculateRidePercentage(distance_in_metres, distance*1000));
-    }, 700 /*7000*/)
+    }, 7000)
     // Increment calorie counter
     setInterval(function(){
         kcal++;
@@ -106,6 +109,11 @@ function varyValues() {
         seconds_elapsed = ride_duration_in_seconds - (minutes_elapsed*60);
         ride_duration = minutes_elapsed + ":" + seconds_elapsed.toString().padStart(2, "0");
         document.querySelector("#value_duration").setAttribute("value", ride_duration);
+        // Set pace line
+        let pace_positionx_translation = ((ride_duration_in_seconds / pace_in_seconds) * 6) - 3;
+        let pace_position = pace_positionx_translation + " 0 0.1";
+        console.log(pace_position);
+        document.querySelector("#pace-line").setAttribute("position", pace_position);
     }, 1000);
     // Vary gradient
     setInterval(function(){
@@ -126,13 +134,9 @@ function varyValues() {
 
 // Send stats to stats page
 function setRideStats() {
-    // Distance travelled
-    let distance_stat = travelled_distance/10 + "km / " + Math.floor((travelled_distance)*0.621371)/10 + "mi";
-    $("#stats_distance").text(distance_stat);
-    // Ride duration
+    $("#stats_distance").text(travelled_distance/10 + "km / " + Math.floor((travelled_distance)*0.621371)/10 + "mi");
     $("#stats_duration").text(ride_duration);
-    // Calories
-    $("#stats_calories").text(kcal + "kcal");
+    $("#stats_calories").text(kcal + "kcal / " + Math.floor(kcal*4.184) + "kJ");
 }
 
 // Functions to switch between HUD elements
