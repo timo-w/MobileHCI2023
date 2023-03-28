@@ -50,9 +50,9 @@
 
       <div class="field-container">
         <span id="button_previous-stats" class="field-button">&lt;</span>
-        <span id="stats_page-1" class="field-label">Distance Travelled:<br><a id="stats_distance">5.7km</a><hr>Ride Duration:<br><a id="stats_duration">16:34</a></span>
-        <span id="stats_page-2" class="field-label">Average Speed:<br><a id="stats_avg-speed">24kph / 15mph</a><hr>Max Speed:<br><a id="stats_max-speed">29kmh / 18mph</a></span>
-        <span id="stats_page-3" class="field-label">Calories Burned:<br><a id="stats_calories">256kcal</a><hr>Average Heartrate:<br><a id="stats_heartrate">120bpm</a></span>
+        <span id="stats_page-1" class="field-label">Distance Travelled:<br><a id="stats_distance"></a><hr>Ride Duration:<br><a id="stats_duration"></a></span>
+        <span id="stats_page-2" class="field-label">Average Speed:<br><a id="stats_avg-speed">24km/h / 15mph</a><hr>Max Speed:<br><a id="stats_max-speed">29km/h / 18mph</a></span>
+        <span id="stats_page-3" class="field-label">Calories Burned:<br><a id="stats_calories"></a><hr>Average Heartrate:<br><a id="stats_heartrate">120bpm</a></span>
         <span id="button_next-stats" class="field-button">&gt;</span>
       </div>
 
@@ -69,38 +69,71 @@
 
     <!-- HUD -->
     <a-scene id="hud" background="color: #0af72e">
+
+      <a-camera wasd-controls-enabled="false"></a-camera>
+      
       <a-assets>
         <a-mixin id="number-item" geometry="width: 2.2; height: 1;" material="opacity: 0.5; color: #104c7e;" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 5;"></a-mixin>
         <a-mixin id="unit-item" geometry="width: 1.5; height: 0.5;" material="opacity: 0.5; color: #104c7e;" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 10;"></a-mixin>
+        <a-mixin id="unit-text" scale="2 2 2"></a-mixin>
       </a-assets>
       
-      <!-- Labels & Values -->
-      <a-plane mixin="number-item" position="-4 -2.2 -8" rotation="-20 10 0">
-        <a-text position="0.7 0 0" id="value_speed" value="0" scale="4 4 4" align="right"></a-text>
+      <!-- HUD Elements 1 -->
+      <a-plane class="hud1" mixin="number-item" position="-4 -2.2 -8" rotation="-20 10 0">
+        <a-text position="0.7 0 0" id="value_speed-km" value="0" scale="4 4 4" align="right"></a-text>
       </a-plane>
-      <a-plane class="unit" mixin="unit-item" position="-2.6 -2.2 -8.3" rotation="-20 10 0">
-        <a-text value="mph" scale="2 2 2" position="-0.4 0 0"></a-text>
+      <a-plane class="hud1" mixin="unit-item" position="-2.6 -2.2 -8.3" rotation="-20 10 0">
+        <a-text mixin="unit-text" value="km/h" position="-0.4 0 0"></a-text>
       </a-plane>
       
-      <a-plane mixin="number-item" position="4  -2.2 -8" rotation="-20 -10 0">
+      <a-plane class="hud1" mixin="number-item" position="4  -2.2 -8" rotation="-20 -10 0">
         <a-text position="-0.7 0 0" id="value_heartrate" value="0" scale="4 4 4" align="left"></a-text>
       </a-plane>
-      <a-plane class="unit" mixin="unit-item" position="2.6 -2.2 -8.3" rotation="-20 -10 0">
-        <a-text value="bpm" scale="2 2 2" position="0.4 0 0" align="right"></a-text>
+      <a-plane class="hud1" mixin="unit-item" position="2.6 -2.2 -8.3" rotation="-20 -10 0">
+        <a-text mixin="unit-text" value="bpm" position="0.4 0 0" align="right"></a-text>
       </a-plane>
       
-      <a-plane mixin="number-item" position="-4 -3.25 -7.7" rotation="-20 10 0">
-        <a-text position="0.7 0 0" id="value_distance" value="0" scale="4 4 4" align="right"></a-text>
+      <a-plane class="hud1" mixin="number-item" position="-4 -3.25 -7.7" rotation="-20 10 0">
+        <a-text position="0.7 0 0" id="value_distance-km" value="0" scale="4 4 4" align="right"></a-text>
       </a-plane>
-      <a-plane class="unit" mixin="unit-item" position="-2.6 -3.25 -8" rotation="-20 10 0">
-        <a-text value="km" scale="2 2 2" position="-0.4 0 0"></a-text>
+      <a-plane class="hud1" mixin="unit-item" position="-2.6 -3.25 -8" rotation="-20 10 0">
+        <a-text mixin="unit-text" value="km" position="-0.4 0 0"></a-text>
       </a-plane>
       
-      <a-plane mixin="number-item" position="4 -3.25 -7.7" rotation="-20 -10 0">
+      <a-plane class="hud1" mixin="number-item" position="4 -3.25 -7.7" rotation="-20 -10 0">
         <a-text position="-0.7 0 0" id="value_calories" value="0" scale="4 4 4" align="left"></a-text>
       </a-plane>
-      <a-plane class="unit" mixin="unit-item" position="2.6 -3.25 -8" rotation="-20 -10 0">
-        <a-text value="kcal" scale="2 2 2" position="0.4 0 0" align="right"></a-text>
+      <a-plane class="hud1" mixin="unit-item" position="2.6 -3.25 -8" rotation="-20 -10 0">
+        <a-text mixin="unit-text" value="kcal" position="0.4 0 0" align="right"></a-text>
+      </a-plane>
+
+      <!-- HUD Elements 2 -->
+      <a-plane class="hud2" mixin="number-item" position="-4 -2.2 -8" rotation="-20 10 0">
+        <a-text position="0.7 0 0" id="value_speed-mi" value="0" scale="4 4 4" align="right"></a-text>
+      </a-plane>
+      <a-plane class="hud2" mixin="unit-item" position="-2.6 -2.2 -8.3" rotation="-20 10 0">
+        <a-text mixin="unit-text" value="mph" position="-0.4 0 0"></a-text>
+      </a-plane>
+      
+      <a-plane class="hud2" mixin="number-item" position="4  -2.2 -8" rotation="-20 -10 0">
+        <a-text position="-0.7 0 0" id="value_heartrate" value="0" scale="4 4 4" align="left"></a-text>
+      </a-plane>
+      <a-plane class="hud2" mixin="unit-item" position="2.6 -2.2 -8.3" rotation="-20 -10 0">
+        <a-text mixin="unit-text" value="m/s" position="0.4 0 0" align="right"></a-text>
+      </a-plane>
+      
+      <a-plane class="hud2" mixin="number-item" position="-4 -3.25 -7.7" rotation="-20 10 0">
+        <a-text position="0.7 0 0" id="value_distance-mi" value="0" scale="4 4 4" align="right"></a-text>
+      </a-plane>
+      <a-plane class="hud2" mixin="unit-item" position="-2.6 -3.25 -8" rotation="-20 10 0">
+        <a-text mixin="unit-text" value="mi" position="-0.4 0 0"></a-text>
+      </a-plane>
+      
+      <a-plane class="hud2" mixin="number-item" position="4 -3.25 -7.7" rotation="-20 -10 0">
+        <a-text position="-0.7 0 0" id="value_duration" value="0" scale="4 4 4" align="left"></a-text>
+      </a-plane>
+      <a-plane class="hud2" mixin="unit-item" position="2.6 -3.25 -8" rotation="-20 -10 0">
+        <a-text mixin="unit-text" value="time" position="0.4 0 0" align="right"></a-text>
       </a-plane>
       
       <!-- Progress Bar -->

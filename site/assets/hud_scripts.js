@@ -2,6 +2,9 @@
 // Mobile HCI 2023 Coursework HUD Scripts
 // --------------------------------------
 
+$(document).ready(function() {
+    showHud1();
+});
 
 // Generate a random integer between a specified range
 function generateRandom(min, max) {
@@ -45,10 +48,14 @@ let ride_duration_in_seconds = 0;
 let minutes_elapsed = 0;
 let seconds_elapsed = 0;
 let ride_duration = "0:00";
+let velocity = 0;
+
 function varyValues() {
     // Vary speed
     setInterval(function(){
-        document.querySelector("#value_speed").setAttribute("value", generateRandom(12, 18));
+        velocity = generateRandom(20, 30);
+        document.querySelector("#value_speed-km").setAttribute("value", velocity);
+        document.querySelector("#value_speed-mi").setAttribute("value", Math.floor(velocity*0.621371));
     }, 2000);
     // Vary heartrate
     setInterval(function(){
@@ -68,7 +75,8 @@ function varyValues() {
     // Increase distance
     setInterval(function(){
         travelled_distance += generateRandom(0, 2);
-        document.querySelector("#value_distance").setAttribute("value", travelled_distance/10);
+        document.querySelector("#value_distance-km").setAttribute("value", travelled_distance/10);
+        document.querySelector("#value_distance-mi").setAttribute("value", Math.floor(travelled_distance*0.621371)/10);
         // Set progress bar
         distance_in_metres = travelled_distance * 100;
         setProgressBar(calculateRidePercentage(distance_in_metres, distance*1000));
@@ -84,21 +92,34 @@ function varyValues() {
         minutes_elapsed = Math.floor(ride_duration_in_seconds / 60);
         seconds_elapsed = ride_duration_in_seconds - (minutes_elapsed*60);
         ride_duration = minutes_elapsed + ":" + seconds_elapsed.toString().padStart(2, "0");
+        document.querySelector("#value_duration").setAttribute("value", ride_duration);
     }, 1000);
 }
 
 // Send stats to stats page
 function setRideStats() {
-
     // Distance travelled
     let distance_stat = travelled_distance/10 + "km / " + Math.floor((travelled_distance)*0.621371)/10 + "mi";
     $("#stats_distance").text(distance_stat);
-
     // Ride duration
     $("#stats_duration").text(ride_duration);
-
     // Calories
     $("#stats_calories").text(kcal + "kcal");
+}
+
+
+// Functions to switch between HUD elements
+function showHud1() {
+    for (let i=0; i<document.querySelectorAll(".hud1").length; i++) {
+        document.querySelectorAll(".hud1")[i].setAttribute("visible", true);
+        document.querySelectorAll(".hud2")[i].setAttribute("visible", false);
+    }
+}
+function showHud2() {
+    for (let i=0; i<document.querySelectorAll(".hud1").length; i++) {
+        document.querySelectorAll(".hud1")[i].setAttribute("visible", false);
+        document.querySelectorAll(".hud2")[i].setAttribute("visible", true);
+    }
 }
 
 // Keypress events (for simulating handlebar button presses)
@@ -106,12 +127,14 @@ $(document).keydown(function(e) {
     switch(e.which) {
         // Left
         case 37:
+            showHud1();
             break;
         // Up
         case 38:
             break;
-        case 39:
         // Right
+        case 39:
+            showHud2();
             break;
         // Down
         case 40:
