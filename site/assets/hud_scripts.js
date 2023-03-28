@@ -32,10 +32,22 @@ function setProgressBar(percentage) {
         let position_attribute = translate_x + " 0 0.01"
         document.querySelector("#progress-bar").setAttribute("position", position_attribute);
         // Set progress bar text
-        document.querySelector("#progress-bar-text").setAttribute("value", percentage + "%");
+        if (percentage >= 25) {
+            document.querySelector("#milestone-1").setAttribute("src", "#complete");
+            document.querySelector("#progress-bar-text").setAttribute("value", "First milestone reached! Keep going!");
+        }
+        if (percentage >= 50) {
+            document.querySelector("#milestone-2").setAttribute("src", "#complete");
+            document.querySelector("#progress-bar-text").setAttribute("value", "Second milestone reached! You got this!");
+        }
+        if (percentage >= 75) {
+            document.querySelector("#milestone-3").setAttribute("src", "#complete");
+            document.querySelector("#progress-bar-text").setAttribute("value", "Third milestone reached! Nearly there!");
+        }
     }
     else {
         // Set progress bar to finished text
+        document.querySelector("#milestone-4").setAttribute("src", "#complete");
         document.querySelector("#progress-bar-text").setAttribute("value", "Ride Finished! Press BACK to show stats.");
     }
 }
