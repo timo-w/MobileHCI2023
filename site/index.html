@@ -79,8 +79,6 @@
     <!-- HUD -->
     <a-scene id="hud" background="color: #0af72e">
 
-      <a-camera wasd-controls-enabled="false"></a-camera>
-
       <a-assets>
         <a-mixin id="number-item" geometry="width: 2.3; height: 1;" material="opacity: 0.5; color: #104c7e;" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 5;"></a-mixin>
         <a-mixin id="unit-item" geometry="width: 1.5; height: 0.5;" material="opacity: 0.5; color: #104c7e;" text="align: center; anchor: center; baseline: center; color: white; wrap-count: 10;"></a-mixin>
@@ -88,7 +86,11 @@
         <img id="milestone" src="assets/milestone.png">
         <img id="finish" src="assets/finish.png">
         <img id="complete" src="assets/complete.png">
+        <video id="video" autoplay loop="true" src="assets/background_video.mp4"> </video>
       </a-assets>
+
+      <a-videosphere src="#video" rotation="0 -80 0" play-on-window-click></a-videosphere>
+      <a-camera wasd-controls-enabled="false"></a-camera>
       
       <!-- HUD Elements 1 -->
       <a-plane class="hud1" mixin="number-item" position="-4.2 -2.2 -8" rotation="-20 10 0">

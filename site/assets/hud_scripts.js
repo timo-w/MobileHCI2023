@@ -70,6 +70,7 @@ function setProgressBar(percentage) {
         // Set progress bar to finished text, remove pace line
         document.querySelector("#milestone-4").setAttribute("src", "#complete");
         document.querySelector("#progress-bar-text").setAttribute("value", "Ride Finished! Press BACK to show stats.");
+        document.querySelector("#pace-line").setAttribute("visible", false);
     }
 }
 
@@ -111,19 +112,6 @@ function varyValues() {
         kcal++;
         document.querySelector("#value_calories").setAttribute("value", kcal);
     }, SIMULATION_SPEED*5);
-    // Track ride duration
-    setInterval(function(){
-        ride_duration_in_seconds++;
-        minutes_elapsed = Math.floor(ride_duration_in_seconds / 60);
-        seconds_elapsed = ride_duration_in_seconds - (minutes_elapsed*60);
-        ride_duration = minutes_elapsed + ":" + seconds_elapsed.toString().padStart(2, "0");
-        document.querySelector("#value_duration").setAttribute("value", ride_duration);
-        // Set pace line
-        let pace_positionx_translation = Math.round((((ride_duration_in_seconds / pace_in_seconds) * 6) - 3) * 100);
-        if (pace_positionx_translation <= 300) {
-            document.querySelector("#pace-line").setAttribute("position", pace_positionx_translation/100 + " 0 0.1");
-        }
-    }, SIMULATION_SPEED);
     // Vary gradient
     setInterval(function(){
         plus_or_minus = generateRandom(0, 2);
@@ -139,6 +127,19 @@ function varyValues() {
         }
         document.querySelector("#value_gradient").setAttribute("value", gradient + "%");
     }, SIMULATION_SPEED*1.4);
+    // Track ride duration
+    setInterval(function(){
+        ride_duration_in_seconds++;
+        minutes_elapsed = Math.floor(ride_duration_in_seconds / 60);
+        seconds_elapsed = ride_duration_in_seconds - (minutes_elapsed*60);
+        ride_duration = minutes_elapsed + ":" + seconds_elapsed.toString().padStart(2, "0");
+        document.querySelector("#value_duration").setAttribute("value", ride_duration);
+        // Set pace line
+        let pace_positionx_translation = Math.round((((ride_duration_in_seconds / pace_in_seconds) * 6) - 3) * 100);
+        if (pace_positionx_translation <= 300) {
+            document.querySelector("#pace-line").setAttribute("position", pace_positionx_translation/100 + " 0 0.1");
+        }
+    }, SIMULATION_SPEED);
 }
 
 // Send stats to stats page
@@ -174,8 +175,8 @@ $(document).keydown(function(e) {
             if (!started) {
                 varyValues();
                 started = false;
+                document.querySelector("#progress-bar-text").setAttribute("value", "");
             }
-            document.querySelector("#progress-bar-text").setAttribute("value", "");
             break;
         // Right
         case 39:
