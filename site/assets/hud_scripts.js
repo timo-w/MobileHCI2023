@@ -2,6 +2,21 @@
 // Mobile HCI 2023 Coursework HUD Scripts
 // --------------------------------------
 
+// How many milliseconds are in 1 simulation second (less = faster sim speed)
+const SIMULATION_SPEED = 1000;
+
+let bpm = 115;
+let travelled_distance = 0;
+let kcal = 0;
+let ride_duration_in_seconds = 0;
+let pace_in_seconds = pace * 60;
+let minutes_elapsed = 0;
+let seconds_elapsed = 0;
+let ride_duration = "0:00";
+let velocity = 0;
+let gradient = 0;
+let started = false;
+
 $(document).ready(function() {
     showHud1();
 });
@@ -54,17 +69,6 @@ function setProgressBar(percentage) {
     }
 }
 
-let bpm = 115;
-let travelled_distance = 0;
-let kcal = 0;
-let ride_duration_in_seconds = 0;
-let pace_in_seconds = pace * 60;
-let minutes_elapsed = 0;
-let seconds_elapsed = 0;
-let ride_duration = "0:00";
-let velocity = 0;
-let gradient = 0;
-
 // Simulate HUD values
 function varyValues() {
     // Vary speed
@@ -72,7 +76,7 @@ function varyValues() {
         velocity = generateRandom(20, 30);
         document.querySelector("#value_speed-km").setAttribute("value", velocity);
         document.querySelector("#value_speed-mi").setAttribute("value", Math.floor(velocity*0.621371));
-    }, 2500);
+    }, SIMULATION_SPEED*2.5);
     // Vary heartrate
     setInterval(function(){
         plus_or_minus = generateRandom(0, 2);
@@ -87,7 +91,7 @@ function varyValues() {
             bpm -= 4;
         }
         document.querySelector("#value_heartrate").setAttribute("value", bpm);
-    }, 770);
+    }, SIMULATION_SPEED*0.77);
     // Increase distance
     setInterval(function(){
         travelled_distance += generateRandom(0, 2);
@@ -96,12 +100,12 @@ function varyValues() {
         // Set progress bar
         distance_in_metres = travelled_distance * 100;
         setProgressBar(calculateRidePercentage(distance_in_metres, distance*1000));
-    }, 7000)
+    }, SIMULATION_SPEED*7)
     // Increment calorie counter
     setInterval(function(){
         kcal++;
         document.querySelector("#value_calories").setAttribute("value", kcal);
-    }, 3000);
+    }, SIMULATION_SPEED*5);
     // Track ride duration
     setInterval(function(){
         ride_duration_in_seconds++;
@@ -110,11 +114,10 @@ function varyValues() {
         ride_duration = minutes_elapsed + ":" + seconds_elapsed.toString().padStart(2, "0");
         document.querySelector("#value_duration").setAttribute("value", ride_duration);
         // Set pace line
-        let pace_positionx_translation = ((ride_duration_in_seconds / pace_in_seconds) * 6) - 3;
-        let pace_position = pace_positionx_translation + " 0 0.1";
-        console.log(pace_position);
-        document.querySelector("#pace-line").setAttribute("position", pace_position);
-    }, 1000);
+        let pace_positionx_translation = Math.round((((ride_duration_in_seconds / pace_in_seconds) * 6) - 3) * 100);
+        console.log(pace_positionx_translation/100 + " 0 0.1");
+        document.querySelector("#pace-line").setAttribute("position", pace_positionx_translation/100 + " 0 0.1");
+    }, SIMULATION_SPEED);
     // Vary gradient
     setInterval(function(){
         plus_or_minus = generateRandom(0, 2);
@@ -129,7 +132,7 @@ function varyValues() {
             gradient -= 2;
         }
         document.querySelector("#value_gradient").setAttribute("value", gradient + "%");
-    }, 1400);
+    }, SIMULATION_SPEED*1.4);
 }
 
 // Send stats to stats page
@@ -162,6 +165,11 @@ $(document).keydown(function(e) {
             break;
         // Up
         case 38:
+            if (!started) {
+                varyValues();
+                started = false;
+            }
+            document.querySelector("#progress-bar-text").setAttribute("value", "");
             break;
         // Right
         case 39:

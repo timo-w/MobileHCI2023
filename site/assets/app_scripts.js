@@ -98,7 +98,6 @@ $(document).ready(function() {
 // Display HUD and start simulating values
 function showHUD(delay) {
     $("#hud").fadeIn(delay);
-    varyValues();
 }
 function hideHUD(delay) {
     $("#hud").fadeOut(delay);
