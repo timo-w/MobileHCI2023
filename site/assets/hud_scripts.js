@@ -1,10 +1,15 @@
-// --------------------------------------
-// Mobile HCI 2023 Coursework HUD Scripts
-// --------------------------------------
+// ---------------------------------------------------
+// Mobile HCI 2023 Coursework HUD & Simulation Scripts
+// ---------------------------------------------------
 
-// How many milliseconds are in 1 simulation second (less = faster sim speed)
-const SIMULATION_SPEED = 1000;
+/*
+    How fast the simulation should run
+    Default: 1 = 1x speed
+    2 = 2x speed, 0.5 = 0.5x speed, etc.
+*/
+const SIMULATION_SPEED_MULTIPLIER = 10;
 
+const SIMULATION_SPEED = (1/SIMULATION_SPEED_MULTIPLIER)*1000;
 let bpm = 115;
 let travelled_distance = 0;
 let kcal = 0;
@@ -65,12 +70,12 @@ function setProgressBar(percentage) {
         // Set progress bar to finished text, remove pace line
         document.querySelector("#milestone-4").setAttribute("src", "#complete");
         document.querySelector("#progress-bar-text").setAttribute("value", "Ride Finished! Press BACK to show stats.");
-        document.querySelector("#pace-line").setAttribute("visible", false);
     }
 }
 
 // Simulate HUD values
 function varyValues() {
+    pace_in_seconds = pace * 60;
     // Vary speed
     setInterval(function(){
         velocity = generateRandom(20, 30);
@@ -115,8 +120,9 @@ function varyValues() {
         document.querySelector("#value_duration").setAttribute("value", ride_duration);
         // Set pace line
         let pace_positionx_translation = Math.round((((ride_duration_in_seconds / pace_in_seconds) * 6) - 3) * 100);
-        console.log(pace_positionx_translation/100 + " 0 0.1");
-        document.querySelector("#pace-line").setAttribute("position", pace_positionx_translation/100 + " 0 0.1");
+        if (pace_positionx_translation <= 300) {
+            document.querySelector("#pace-line").setAttribute("position", pace_positionx_translation/100 + " 0 0.1");
+        }
     }, SIMULATION_SPEED);
     // Vary gradient
     setInterval(function(){
