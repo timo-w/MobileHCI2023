@@ -3,6 +3,8 @@
 ## Overview
 This is a prototype for a mixed-reality application which uses AR to display a Heads-Up Display (HUD) for cyclists during their rides.
 
+There is a brief video demonstration available on [YouTube](https://youtu.be/5Bws3eAIoxg).
+
 The application is web-based and is built on the A-Frame framework, with a live site available on [Glitch](https://odd-chip-prose.glitch.me).
 
 ## Features
