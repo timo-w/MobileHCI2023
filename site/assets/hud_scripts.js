@@ -7,7 +7,7 @@
     Default: 1 = 1x speed
     2 = 2x speed, 0.5 = 0.5x speed, etc.
 */
-const SIMULATION_SPEED_MULTIPLIER = 10;
+const SIMULATION_SPEED_MULTIPLIER = 1;
 
 const SIMULATION_SPEED = (1/SIMULATION_SPEED_MULTIPLIER)*1000;
 let bpm = 115;
