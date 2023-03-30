@@ -47,9 +47,9 @@ When in the AR view, use the arrow keys:
  This project was developed by:
  - Daniel Szittya (2575425s@student.gla.ac.uk)
  - Lucy Stumpf (2574266s@student.gla.ac.uk)
- - Nash Waugh (2517003w@student.gla.ac.uk)
  - Timothy Wang (2556936w@student.gla.ac.uk)
+ - Nash Waugh (2517003w@student.gla.ac.uk)
  
  Assets:
  - The background video is by Virtual Running Videos on [YouTube](https://www.youtube.com/watch?v=aYDnqzU_lb8).
- - All other assets were created by Timothy Wang
+ - All other assets were created/produced by Timothy Wang
