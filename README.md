@@ -34,7 +34,7 @@ When in the AR view, use the arrow keys:
 
 ## Limitations & Bugs
 - The video background often will not load in time, leading to a black background when the `Start Journey` button is pressed
-  - To fix this, press `DOWN` to being up the complete screen, then press `Begin another Journey`. Wait a few seconds, then press `Start Journey`
+  - To fix this, press `DOWN` to bring up the complete screen, then press `Begin another Journey`. Wait a few seconds, then press `Start Journey`
   - The background video should work from then onwards
 - Changing the `Number of Milestones` does not alter the number of milestones in the AR view
   - Due to implementation complexities the milestones are hard-coded at 4
@@ -47,7 +47,6 @@ When in the AR view, use the arrow keys:
  - Lucy Stumpf (2574266s@student.gla.ac.uk)
  - Nash Waugh (2517003w@student.gla.ac.uk)
  - Timothy Wang (2556936w@student.gla.ac.uk)
-
  
  Assets:
  - The background video is by Virtual Running Videos on [YouTube](https://www.youtube.com/watch?v=aYDnqzU_lb8).
